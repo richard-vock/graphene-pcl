@@ -259,13 +259,9 @@ cloud::cloud(const std::filesystem::path& file_path, std::optional<vec4f_t> poin
                     std::istringstream buffer(line);
                     std::vector<std::string> tokens{std::istream_iterator<std::string>(buffer),
                                                     std::istream_iterator<std::string>()};
-                    if (off_x >= 0) {
+                    if (off_x >= 0 && off_y <= 0 && off_z >= 0) {
                         mat_(i, 0) = std::stof(tokens[off_x]);
-                    }
-                    if (off_y >= 0) {
                         mat_(i, 1) = std::stof(tokens[off_y]);
-                    }
-                    if (off_z >= 0) {
                         mat_(i, 2) = std::stof(tokens[off_z]);
                     }
                     if (off_nx >= 0) {
@@ -357,6 +353,5 @@ cloud::vertex_indices() const
 {
     return indices_;
 }
-
 
 } // graphene::pcl
